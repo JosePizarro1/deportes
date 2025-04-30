@@ -1,0 +1,15 @@
+/mi-proyecto
+│
+├── /node_modules         # 📦 Dependencias
+├── /pages                # 📄 Rutas de tu app
+│   └── /api              # 🔧 Aquí van tus rutas de backend (API)
+│       └── lugares.ts    # Ruta de ejemplo para guardar/leer lugares
+│
+├── /lib                  # 📚 Funciones reutilizables (aquí va mongodb.ts)
+│   └── mongodb.ts
+│
+├── .env.local            # 🔐 Variables de entorno (MONGODB_URI)
+├── package.json          # 📦 Configuración de proyecto y scripts
+├── tsconfig.json         # (si usas TypeScript)
+├── next.config.js        # ⚙️ Configuración de Next.js
+└── README.md             # 📝 Opcional
