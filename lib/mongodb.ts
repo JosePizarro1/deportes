@@ -11,7 +11,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 declare global {
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
+  let _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
 if (process.env.NODE_ENV === "development") {
