@@ -5,13 +5,6 @@ import Hero from '@/components/Hero'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Poppins } from 'next/font/google'
-import {
-  FaFutbol,
-  FaSwimmer,
-  FaVolleyballBall,
-  FaChessKnight,
-  FaBasketballBall,
-} from 'react-icons/fa'
 
 const poppins = Poppins({
   weight: ['400', '600', '700'],

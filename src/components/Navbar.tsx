@@ -1,7 +1,7 @@
 // src/components/Navbar.tsx
 'use client'
 
-import Link from 'next/link'
+
 import { FiLogIn } from 'react-icons/fi'
 
 export default function Navbar() {

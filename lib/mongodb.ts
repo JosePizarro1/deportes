@@ -11,15 +11,16 @@ if (!process.env.MONGODB_URI) {
 }
 
 declare global {
+  // Usamos 'let' en lugar de 'var' para evitar problemas de alcance global
   let _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
 if (process.env.NODE_ENV === "development") {
-  if (!global._mongoClientPromise) {
+  if (!_mongoClientPromise) {
     client = new MongoClient(uri, options);
-    global._mongoClientPromise = client.connect();
+    _mongoClientPromise = client.connect();
   }
-  clientPromise = global._mongoClientPromise!;
+  clientPromise = _mongoClientPromise;
 } else {
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
