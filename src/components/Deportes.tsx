@@ -9,7 +9,7 @@ const deportes = [
   { nombre: "Natación", tipo: "natacion", img: "/images/deportes/natacion.jpg", ubicaciones: 8, icon: <FaSwimmer size={24} /> },
   { nombre: "Vóley", tipo: "voley", img: "/images/deportes/voley.jpg", ubicaciones: 5, icon: <FaRunning size={24} /> },
   { nombre: "Ajedrez", tipo: "ajedrez", img: "/images/deportes/ajedrez.png", ubicaciones: 3, icon: <FaChess size={24} /> },
-  { nombre: "Billar", tipo: "billar", img: "/images/deportes/billar.jpg", ubicaciones: 12, icon: <FaRunning size={24} /> },
+  { nombre: "Billar", tipo: "billar", img: "/images/deportes/billar.jpg", ubicaciones: 12, icon: <FaGamepad size={24} /> },
   { nombre: "Tenis", tipo: "tenis", img: "/images/deportes/tenis.jpg", ubicaciones: 10, icon: <FaRunning size={24} /> },
 ];
 export default function Deportes() {
