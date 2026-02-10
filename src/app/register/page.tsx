@@ -30,7 +30,8 @@ export default function RegisterPage() {
                 const data = await res.json()
                 setError(data.message || "Error al registrar")
             }
-        } catch (err) {
+        } catch (error) {
+            console.error("Register error:", error)
             setError("Error de conexión")
         } finally {
             setLoading(false)

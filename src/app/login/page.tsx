@@ -31,7 +31,8 @@ export default function LoginPage() {
                 router.push("/")
                 router.refresh()
             }
-        } catch (err) {
+        } catch (error) {
+            console.error("Login error:", error)
             setError("Error de conexión")
         } finally {
             setLoading(false)
