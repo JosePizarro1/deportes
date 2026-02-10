@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏟️ Mi App de Deportes
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+
+**Una plataforma moderna para la gestión de espacios deportivos**
+
+[Demo] · [Reportar Bug](issues) · [Solicitar Feature](issues)
+
+</div>
+
+---
+
+## 📝 Descripción
+
+Bienvenido a **Mi App de Deportes**, una aplicación web de última generación diseñada para gestionar y visualizar lugares deportivos de manera eficiente y atractiva. Utilizando **Next.js 15** y **React 19**, esta plataforma ofrece una experiencia de usuario fluida, enriquecida con animaciones de **Framer Motion** y un diseño moderno gracias a **Tailwind CSS**.
+
+---
+
+## ✨ Características Principales
+
+*   🚀 **Performance Optimizado**: Construido sobre Next.js 15 para una carga rápida y SEO amigable.
+*   🎨 **Diseño Moderno y Responsivo**: Interfaz construida con Tailwind CSS v4 que se adapta a cualquier dispositivo.
+*   ✨ **Animaciones Fluidas**: Experiencia interactiva mejorada con Framer Motion.
+*   🖼️ **Carruseles Interactivos**: Visualización de imágenes dinámica con React Slick.
+*   🗄️ **Base de Datos Robusta**: Integración completa con MongoDB para el manejo seguro de datos.
+*   🔒 **Tipado Estático**: Código robusto y mantenible gracias a TypeScript.
+
+---
+
+## 🛠️ Stack Tecnológico
+
+<details>
+  <summary><b>Frontend</b></summary>
+  <ul>
+    <li><a href="https://nextjs.org/">Next.js 15</a> - Framework de React.</li>
+    <li><a href="https://react.dev/">React 19</a> - Biblioteca para interfaces de usuario.</li>
+    <li><a href="https://tailwindcss.com/">Tailwind CSS</a> - Framework de utilidades CSS.</li>
+    <li><a href="https://www.framer.com/motion/">Framer Motion</a> - Librería de animaciones.</li>
+    <li><a href="https://react-slick.neostack.com/">React Slick</a> - Carrusel de imágenes.</li>
+    <li><a href="https://react-icons.github.io/react-icons/">React Icons</a> - Paquete de iconos.</li>
+  </ul>
+</details>
+
+<details>
+  <summary><b>Backend & Datos</b></summary>
+  <ul>
+    <li><a href="https://nextjs.org/docs/api-routes/introduction">Next.js API Routes</a> - Endpoints del servidor.</li>
+    <li><a href="https://www.mongodb.com/">MongoDB</a> - Base de datos NoSQL.</li>
+  </ul>
+</details>
+
+---
+
+## 📂 Estructura del Proyecto
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+mi-app-deportes/
+├── 📁 lib/                 # 📚 Lógica reutilizable y conexión a DB
+│   └── mongodb.ts          # Integración con MongoDB
+├── 📁 public/              # 🖼️ Archivos estáticos (imágenes, iconos)
+├── 📁 src/                 # 💻 Código fuente principal
+├── 📄 .env.local           # 🔐 Variables de entorno (No incluido en repo)
+├── 📄 next.config.ts       # ⚙️ Configuración de Next.js
+├── 📄 package.json         # 📦 Definición de dependencias y scripts
+├── 📄 tsconfig.json        # 📘 Configuración de TypeScript
+└── 📄 README.md            # 📖 Documentación del proyecto
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Comenzando
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Sigue estos pasos para obtener una copia local del proyecto y ponerlo en marcha.
 
-## Learn More
+### Prerrequisitos
 
-To learn more about Next.js, take a look at the following resources:
+*   Node.js (v18 o superior)
+*   npm, yarn, pnpm o bun
+*   Una instancia de MongoDB (local o Atlas)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Instalación
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **Clona el repositorio**
+    ```bash
+    git clone https://github.com/tu-usuario/mi-app-deportes.git
+    cd mi-app-deportes
+    ```
 
-## Deploy on Vercel
+2.  **Instala las dependencias**
+    ```bash
+    npm install
+    # o
+    yarn install
+    # o
+    pnpm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Configura las Variables de Entorno**
+    Crea un archivo `.env.local` en la raíz del proyecto y añade tu URI de conexión a MongoDB:
+    ```env
+    MONGODB_URI=mongodb+srv://<usuario>:<password>@cluster.mongodb.net/mi-base-de-datos
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  **Ejecuta el servidor de desarrollo**
+    ```bash
+    npm run dev
+    ```
+
+5.  Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación.
+
+---
+
+## 📸 Capturas de Pantalla
+
+*(Espacio reservado para screenshots de la aplicación)*
+
+| Landing Page | Detalle de Lugar |
+|:---:|:---:|
+| ![Landing Placeholder](https://placehold.co/600x400?text=Landing+Page) | ![Detail Placeholder](https://placehold.co/600x400?text=Detalle+Lugar) |
+
+---
+
+## 🤝 Contribución
+
+¡Las contribuciones son bienvenidas!
+
+1.  Haz un Fork del proyecto.
+2.  Crea tu rama de feature (`git checkout -b feature/AmazingFeature`).
+3.  Haz commit de tus cambios (`git commit -m 'Add some AmazingFeature'`).
+4.  Haz Push a la rama (`git push origin feature/AmazingFeature`).
+5.  Abre un Pull Request.
+
+---
+
+## 📄 Licencia
+
+Distribuido bajo la licencia MIT. Ver `LICENSE` para más información.
+
+---
+
+<div align="center">
+  Hecho con ❤️ por <a href="https://github.com/tu-usuario">Parzival</a>
+</div>
