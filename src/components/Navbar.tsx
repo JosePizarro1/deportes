@@ -1,6 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import { useEffect, useState, type FC } from "react";
 import { FaBars, FaTimes, FaUserCircle, FaTrophy } from "react-icons/fa";
+
+type IconComponent = FC<{ className?: string }>;
+const BarsIcon = FaBars as unknown as IconComponent;
+const TimesIcon = FaTimes as unknown as IconComponent;
+const UserCircleIcon = FaUserCircle as unknown as IconComponent;
+const TrophyIcon = FaTrophy as unknown as IconComponent;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -20,7 +27,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-colors duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md shadow-md" : "bg-transparent"}`}>
+      <nav
+        className={`fixed w-full z-50 transition-colors duration-300 ${
+          scrolled ? "bg-white/80 backdrop-blur-md shadow-md" : "bg-transparent"
+        }`}
+      >
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="text-2xl font-extrabold tracking-tight text-white lg:text-green-700">
@@ -29,13 +40,29 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <ul className="hidden lg:flex space-x-8 items-center text-white lg:text-gray-700">
-            <li><a href="#" className="hover:font-semibold transition">Inicio</a></li>
-            <li><a href="#" className="hover:font-semibold transition">Cancha</a></li>
-            <li><a href="#" className="hover:font-semibold transition">Reservas</a></li>
-            <li><a href="#" className="hover:font-semibold transition">Contacto</a></li>
+            <li>
+              <a href="#" className="hover:font-semibold transition">
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:font-semibold transition">
+                Cancha
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:font-semibold transition">
+                Reservas
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:font-semibold transition">
+                Contacto
+              </a>
+            </li>
             <li>
               <a href="#" className="flex items-center gap-2 hover:font-semibold transition">
-                <FaTrophy className="text-lg" /> Torneos
+                <TrophyIcon className="text-lg" /> Torneos
               </a>
             </li>
           </ul>
@@ -43,25 +70,20 @@ export default function Navbar() {
           {/* Iconos */}
           <div className="flex items-center space-x-4">
             <button className="text-white lg:text-gray-700 hover:font-semibold transition text-lg">
-              <FaUserCircle />
+              <UserCircleIcon />
             </button>
             <button
               onClick={toggleMenu}
               className="lg:hidden text-white text-2xl transition-transform duration-300"
             >
-              {mobileOpen ? <FaTimes /> : <FaBars />}
+              {mobileOpen ? <TimesIcon /> : <BarsIcon />}
             </button>
           </div>
         </div>
       </nav>
 
       {/* Fondo oscuro de fondo cuando el menú está abierto */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 z-40"
-          onClick={toggleMenu} // cerrar si se hace click fuera del panel
-        />
-      )}
+      {mobileOpen && <div className="fixed inset-0 bg-black/40 z-40" onClick={toggleMenu} />}
 
       {/* Menú lateral */}
       <div
@@ -71,18 +93,35 @@ export default function Navbar() {
       >
         <div className="px-6 py-4 mt-14">
           <ul className="flex flex-col space-y-6 text-gray-800 text-lg">
-            <li><a href="#" className="block hover:font-semibold transition">Inicio</a></li>
-            <li><a href="#" className="block hover:font-semibold transition">Cancha</a></li>
-            <li><a href="#" className="block hover:font-semibold transition">Reservas</a></li>
-            <li><a href="#" className="block hover:font-semibold transition">Contacto</a></li>
+            <li>
+              <a href="#" className="block hover:font-semibold transition">
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block hover:font-semibold transition">
+                Cancha
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block hover:font-semibold transition">
+                Reservas
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block hover:font-semibold transition">
+                Contacto
+              </a>
+            </li>
             <li>
               <a href="#" className="flex items-center gap-2 hover:font-semibold transition">
-                <FaTrophy /> Torneos
+                <TrophyIcon /> Torneos
               </a>
             </li>
             <li>
               <button className="flex items-center gap-2 text-gray-800 hover:font-semibold transition">
-                <FaUserCircle /><span>Iniciar Sesión</span>
+                <UserCircleIcon />
+                <span>Iniciar Sesión</span>
               </button>
             </li>
           </ul>

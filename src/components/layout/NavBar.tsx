@@ -6,6 +6,12 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
+type IconComponent = React.FC<{ size?: number; className?: string }>
+const SearchIcon = BiSearch as unknown as IconComponent
+const GlobeIcon = BiGlobe as unknown as IconComponent
+const MenuIcon = BiMenu as unknown as IconComponent
+const UserIcon = BiUser as unknown as IconComponent
+
 export function NavBar() {
     const [isScrolled, setIsScrolled] = useState(false)
 
@@ -59,7 +65,7 @@ export function NavBar() {
                             Invitados
                         </div>
                         <div className="bg-rose-500 rounded-full p-2 text-white">
-                            <BiSearch size={16} />
+                            <SearchIcon size={16} />
                         </div>
                     </div>
 
@@ -75,15 +81,15 @@ export function NavBar() {
                             "p-2 rounded-full cursor-pointer transition-colors",
                             isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
                         )}>
-                            <BiGlobe size={20} />
+                            <GlobeIcon size={20} />
                         </div>
                         <div className={cn(
                             "flex items-center border rounded-full p-2 space-x-2 hover:shadow-md cursor-pointer transition-shadow",
                             isScrolled ? "bg-white border-gray-300" : "bg-white/10 border-white/20"
                         )}>
-                            <BiMenu size={20} className={isScrolled ? "text-gray-700" : "text-white"} />
+                            <MenuIcon size={20} className={isScrolled ? "text-gray-700" : "text-white"} />
                             <div className="bg-gray-500 rounded-full p-1 text-white">
-                                <BiUser size={16} />
+                                <UserIcon size={16} />
                             </div>
                         </div>
                     </div>

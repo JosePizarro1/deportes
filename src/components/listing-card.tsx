@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { motion } from "framer-motion"
 import { FaStar, FaMapMarkerAlt } from "react-icons/fa"
 import { BiWorld, BiFootball, BiBasketball, BiTennisBall } from "react-icons/bi"
@@ -15,12 +16,17 @@ interface ListingProps {
     sports: string[]
 }
 
-const sportIcons: Record<string, React.ReactNode> = {
-    football: <BiFootball size={20} />,
-    basketball: <BiBasketball size={20} />,
-    tennis: <BiTennisBall size={20} />,
-    default: <BiWorld size={20} />,
+type IconComponent = React.FC<{ size?: number; className?: string }>
+
+const sportIcons: Record<string, IconComponent> = {
+    football: BiFootball as unknown as IconComponent,
+    basketball: BiBasketball as unknown as IconComponent,
+    tennis: BiTennisBall as unknown as IconComponent,
+    default: BiWorld as unknown as IconComponent,
 }
+
+const StarIcon = FaStar as unknown as IconComponent
+const MapPinIcon = FaMapMarkerAlt as unknown as IconComponent
 
 export function ListingCard({ listing }: { listing: ListingProps }) {
     return (
@@ -37,7 +43,7 @@ export function ListingCard({ listing }: { listing: ListingProps }) {
                     className="object-cover transition-transform group-hover:scale-105"
                 />
                 <div className="absolute top-3 right-3 rounded-full bg-white/90 backdrop-blur-sm p-2 shadow-sm">
-                    <FaStar className="text-yellow-500" />
+                    <StarIcon className="text-yellow-500" />
                     <span className="ml-1 text-xs font-bold text-gray-800">{listing.rating}</span>
                 </div>
             </div>
@@ -46,7 +52,7 @@ export function ListingCard({ listing }: { listing: ListingProps }) {
                 <div>
                     <h3 className="font-semibold text-gray-900 group-hover:underline">{listing.title}</h3>
                     <div className="flex items-center text-gray-500 text-sm mt-0.5">
-                        <FaMapMarkerAlt size={12} className="mr-1" />
+                        <MapPinIcon size={12} className="mr-1" />
                         <span>{listing.location}</span>
                     </div>
                 </div>
@@ -63,7 +69,7 @@ export function ListingCard({ listing }: { listing: ListingProps }) {
                         className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-black transition-colors"
                         title={sport}
                     >
-                        {sportIcons[sport.toLowerCase()] || sportIcons.default}
+                        {React.createElement(sportIcons[sport.toLowerCase()] || sportIcons.default, { size: 20 })}
                     </div>
                 ))}
             </div>

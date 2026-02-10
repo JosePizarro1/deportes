@@ -5,17 +5,8 @@ import { motion } from "framer-motion"
 import { NavBar } from "@/components/layout/NavBar"
 import { FilterBar } from "@/components/layout/FilterBar"
 import { ListingCard } from "@/components/listing-card"
-import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
-import { BiMap } from "react-icons/bi"
 import Image from "next/image"
-
-// Dynamic import to effectively handle client-side only libraries
-const Map = dynamic(() => import("@/components/Map"), {
-  ssr: false,
-  loading: () => <div className="h-full w-full bg-gray-100 animate-pulse rounded-xl" />
-})
-const ThreeHero = dynamic(() => import("@/components/ThreeHero"), { ssr: false })
 
 // Mock Data
 const MOCK_VENUES = [
@@ -89,7 +80,6 @@ const MOCK_VENUES = [
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("all")
-  const [showMap, setShowMap] = useState(false) // For mobile toggle logic if needed
 
   const filteredVenues = activeFilter === "all"
     ? MOCK_VENUES
@@ -104,7 +94,6 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-rose-500/20 rounded-full blur-[120px]" />
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]" />
-          <ThreeHero />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
@@ -190,46 +179,29 @@ export default function Home() {
       {/* Sticky Filter Bar */}
       <FilterBar activeFilter={activeFilter} setFilter={setActiveFilter} />
 
-      {/* Main Content: Split View (List + Map) */}
+      {/* Main Content */}
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row gap-6">
-
-          {/* Listings Column */}
-          <div className="w-full lg:w-3/5 xl:w-[60%]">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
-                {filteredVenues.length} {filteredVenues.length === 1 ? "lugar" : "lugares"} para jugar
-              </h2>
-              <Button
-                variant="outline"
-                className="lg:hidden flex gap-2 items-center"
-                onClick={() => setShowMap(!showMap)}
-              >
-                <BiMap /> {showMap ? "Mostrar Lista" : "Mostrar Mapa"}
-              </Button>
-            </div>
-
-            <motion.div
-              layout
-              className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6"
-            >
-              {filteredVenues.map((venue) => (
-                <ListingCard key={venue.id} listing={venue} />
-              ))}
-
-              {filteredVenues.length === 0 && (
-                <div className="col-span-full py-20 text-center text-gray-500">
-                  No se encontraron lugares para este deporte. Intenta con &quot;Todos&quot;.
-                </div>
-              )}
-            </motion.div>
+        <div className="w-full">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">
+              {filteredVenues.length} {filteredVenues.length === 1 ? "lugar" : "lugares"} para jugar
+            </h2>
           </div>
 
-          {/* Map Column - Sticky on Desktop */}
-          <div className="hidden lg:block w-full lg:w-2/5 xl:w-[40%] h-[calc(100vh-140px)] sticky top-[140px]">
-            <Map venues={filteredVenues} />
-          </div>
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+          >
+            {filteredVenues.map((venue) => (
+              <ListingCard key={venue.id} listing={venue} />
+            ))}
 
+            {filteredVenues.length === 0 && (
+              <div className="col-span-full py-20 text-center text-gray-500">
+                No se encontraron lugares para este deporte. Intenta con &quot;Todos&quot;.
+              </div>
+            )}
+          </motion.div>
         </div>
       </div>
 
