@@ -14,6 +14,7 @@ if (!cached) {
 
 async function dbConnect() {
     if (cached!.conn) {
+        console.log("ℹ️ Using cached Mongoose connection");
         return cached!.conn;
     }
 
@@ -26,9 +27,15 @@ async function dbConnect() {
             bufferCommands: false,
         };
 
-        cached!.promise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
-            return mongooseInstance;
-        });
+        cached!.promise = mongoose.connect(MONGODB_URI, opts)
+            .then((mongooseInstance) => {
+                console.log("✅ MongoDB (Mongoose) connected");
+                return mongooseInstance;
+            })
+            .catch((err) => {
+                console.error("❌ MongoDB (Mongoose) connection error:", err);
+                throw err;
+            });
     }
     cached!.conn = await cached!.promise;
     return cached!.conn;

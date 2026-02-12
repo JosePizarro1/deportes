@@ -18,12 +18,28 @@ declare global {
 if (process.env.NODE_ENV === "development") {
   if (!_mongoClientPromise) {
     client = new MongoClient(uri, options);
-    _mongoClientPromise = client.connect();
+    _mongoClientPromise = client.connect()
+      .then((c) => {
+        console.log("✅ MongoDB (MongoClient) connected (dev)");
+        return c;
+      })
+      .catch((err) => {
+        console.error("❌ MongoDB (MongoClient) connection error (dev):", err);
+        throw err;
+      });
   }
-  clientPromise = _mongoClientPromise;
+  clientPromise = _mongoClientPromise as Promise<MongoClient>;
 } else {
   client = new MongoClient(uri, options);
-  clientPromise = client.connect();
+  clientPromise = client.connect()
+    .then((c) => {
+      console.log("✅ MongoDB (MongoClient) connected");
+      return c;
+    })
+    .catch((err) => {
+      console.error("❌ MongoDB (MongoClient) connection error:", err);
+      throw err;
+    });
 }
 
 export default clientPromise;

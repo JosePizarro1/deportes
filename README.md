@@ -51,7 +51,9 @@ Bienvenido a **Mi App de Deportes**, una aplicación web de última generación 
   <summary><b>Backend & Datos</b></summary>
   <ul>
     <li><a href="https://nextjs.org/docs/api-routes/introduction">Next.js API Routes</a> - Endpoints del servidor.</li>
-    <li><a href="https://www.mongodb.com/">MongoDB</a> - Base de datos NoSQL.</li>
+    <li><a href="https://www.mongodb.com/">MongoDB</a> - Base de datos NoSQL (base: <code>sportbnb</code>).</li>
+    <li><a href="https://www.npmjs.com/package/migrate-mongo">migrate-mongo</a> - Versionado de esquema/datos (similar a Alembic).</li>
+    <li><code>users</code> collection: usuarios (roles user/admin/super_admin; campo <code>isSuperAdmin</code>).</li>
   </ul>
 </details>
 
@@ -102,10 +104,13 @@ Sigue estos pasos para obtener una copia local del proyecto y ponerlo en marcha.
     ```
 
 3.  **Configura las Variables de Entorno**
-    Crea un archivo `.env.local` en la raíz del proyecto y añade tu URI de conexión a MongoDB:
+    Crea un archivo `.env.local` en la raíz del proyecto y añade tu URI de conexión a MongoDB (seedlist sin SRV):
     ```env
-    MONGODB_URI=mongodb+srv://<usuario>:<password>@cluster.mongodb.net/mi-base-de-datos
+    MONGODB_URI="mongodb://<usuario>:<password>@host1:27017,host2:27017,host3:27017/sportbnb?ssl=true&replicaSet=<replicaSet>&authSource=admin&retryWrites=true&w=majority"
     ```
+    - La base de datos usada es `sportbnb`.
+    - Si el usuario de Atlas está en otra base, cambia `authSource` a esa base.
+    - Asegura que tu IP está permitida en la Access List de Atlas.
 
 4.  **Ejecuta el servidor de desarrollo**
     ```bash
@@ -113,6 +118,19 @@ Sigue estos pasos para obtener una copia local del proyecto y ponerlo en marcha.
     ```
 
 5.  Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación.
+
+---
+
+## 🗂️ Migraciones (migrate-mongo)
+- Estado de migraciones: `npx migrate-mongo status`
+- Aplicar pendientes: `npx migrate-mongo up`
+- Revertir la última: `npx migrate-mongo down`
+- Crear nueva: `npx migrate-mongo create nombre-descriptivo`
+- Ubicación de archivos: carpeta `migrations/` (formato CommonJS). La base objetivo es `sportbnb` según `MONGODB_URI`.
+- Control de historial: colecciones `changelog` y `changelog_lock` en `sportbnb` (no borrar).
+- Migraciones incluidas:
+  - `20260212020937-initial-seed.js`: datos de prueba de venues.
+  - `20260212090000-create-users.js`: crea colección `users`, índice único en `email` y usuario inicial `admin@local.test` con `role: super_admin` e `isSuperAdmin: true`.
 
 ---
 
@@ -147,3 +165,4 @@ Distribuido bajo la licencia MIT. Ver `LICENSE` para más información.
 <div align="center">
   Hecho con ❤️ por <a href="https://github.com/tu-usuario">Parzival</a>
 </div>
+
