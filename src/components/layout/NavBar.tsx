@@ -4,6 +4,7 @@ import * as React from "react"
 import { BiSearch, BiGlobe, BiMenu, BiUser } from "react-icons/bi"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 type IconComponent = React.FC<{ size?: number; className?: string }>
@@ -71,12 +72,15 @@ export function NavBar() {
 
                     {/* Right User Actions */}
                     <div className="flex items-center space-x-4">
-                        <div className={cn(
-                            "text-sm font-semibold px-3 py-2 rounded-full cursor-pointer transition-colors",
-                            isScrolled ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10"
-                        )}>
+                        <Link
+                            href="/host"
+                            className={cn(
+                                "text-sm font-semibold px-3 py-2 rounded-full cursor-pointer transition-colors",
+                                isScrolled ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10"
+                            )}
+                        >
                             Publica tu centro
-                        </div>
+                        </Link>
                         <div className={cn(
                             "p-2 rounded-full cursor-pointer transition-colors",
                             isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
